@@ -24,7 +24,7 @@ port = int(os.getenv("PORT", default=5000))
 
 @app.route("/", methods=["GET"])
 def get_days():
-    logging.info('This is an info message:'days)
+    logging.info('This is an info message days {}'.format(days))
     return jsonify(days)
 
 
@@ -32,8 +32,11 @@ def get_days():
 def get_day(day_id):
     day = [day for day in days if day["id"] == day_id]
     if len(day) == 0:
+        logging.error('This is a error message: day out of range')
         abort(404)
-        logging.error('This is a error message',day)
+    elif day_id > 7:
+        logging.warning('Warning day out of range')
+    logging.info('This is a info message: {}'.format(day[0]))
     return jsonify({"day": day[0]})
 
 
@@ -43,6 +46,6 @@ def post_days():
 
 
 if __name__ == "__main__":
-    port = os.getenv('PORT')
+    port = int(os.getenv('FLASK_RUN_PORT', 5000))
     logging.warning('This is a warning message')
-    serve(app,host="0.0.0.0",port=port, url_scheme='https')
+    serve(app, host="0.0.0.0",port=port, url_scheme='http')
