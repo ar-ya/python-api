@@ -1,0 +1,5 @@
+flask
+# dotnet
+python-dotenv==0.21.0
+waitress==2.1.2
+logging
