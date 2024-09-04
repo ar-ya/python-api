@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from waitress import serve 
 import os
 import logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(levelname)s %(name)s %(threadName)s : %(message)s')
 
 load_dotenv()
 
